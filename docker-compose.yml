@@ -1,12 +1,12 @@
 services:
   postgres:
     image: postgres:17
-    container_name: local-healthcare-agent-demo
+    container_name: local-ehr-context-engineering-demo
     ports:
       - "5434:5432"
     environment:
-      POSTGRES_DB: local-healthcare-agent-demo
-      POSTGRES_USER: local-healthcare-agent-user
-      POSTGRES_PASSWORD: local-healthcare-agent-password
+      POSTGRES_DB: local-ehr-context-engineering-demo
+      POSTGRES_USER: local-ehr-context-engineering-user
+      POSTGRES_PASSWORD: local-ehr-context-engineering-password
     tmpfs:
       - /var/lib/postgresql/data

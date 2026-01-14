@@ -49,7 +49,7 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
 def create_app() -> FastAPI:
 
     app = FastAPI(
-        title="healthcare-agent-demo-api",
+        title="ehr-context-engineering-demo-api",
         docs_url="/api/docs",
         openapi_url="/api/openapi.json",
         lifespan=lifespan,

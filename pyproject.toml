@@ -1,5 +1,5 @@
 [project]
-name = "healthcare-agent-demo-api"
+name = "ehr-context-engineering-demo-api"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
