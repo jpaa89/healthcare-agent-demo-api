@@ -1,5 +1,5 @@
 from datetime import datetime, timezone
-from typing import Sequence
+from typing import List
 from uuid import uuid4
 
 from app.domain.ehr_ingestion.ehr_context_models import (
@@ -31,9 +31,9 @@ class EHRContextsService:
                 type=EHRContextType.DEMOGRAPHICS,
                 content=(
                     f"{ehr.demographics.name}, "
-                    f"{ehr.demographics.age} years old, "
-                    f"gender {ehr.demographics.gender}, "
-                    f"blood type {ehr.demographics.blood_type}"
+                    f"{ehr.demographics.age} años, "
+                    f"género {ehr.demographics.gender}, "
+                    f"tipo sanguineo {ehr.demographics.blood_type}"
                 ),
                 data=ehr.demographics.model_dump(),
                 source=EHRContextSource(
@@ -70,7 +70,7 @@ class EHRContextsService:
                     id=uuid4(),
                     patient_id=patient_id,
                     type=EHRContextType.ALLERGY,
-                    content=f"Allergy to {allergy}",
+                    content=f"Alergia a {allergy}",
                     data={"allergy": allergy},
                     source=EHRContextSource(
                         type=EHRSourceType.MEDICAL_HISTORY,
@@ -121,7 +121,9 @@ class EHRContextsService:
 
         for lab in ehr.lab_results:
             lab_result_content = ", ".join(f"{k}={v}" for k, v in lab.results.items())
-            lab_result_content = f"Lab Test - {lab.test}: {lab_result_content}"
+            lab_result_content = (
+                f"Prueba de laboratorio - {lab.test}: {lab_result_content}"
+            )
             items.append(
                 EHRContextItem(
                     id=uuid4(),
@@ -147,5 +149,5 @@ class EHRContextsService:
 
     async def list_ehr_contexts_by_patient(
         self, patient_id: str
-    ) -> Sequence[EHRContextItem]:
+    ) -> List[EHRContextItem]:
         return await self.ehr_contexts_repository.list_by_patient(patient_id)

@@ -8,15 +8,14 @@ class Settings(BaseSettings):
     db_user: str
     db_password: str | None = None
 
+    openai_api_key: str
+
     @property
     def database_url(self) -> str:
         password = self.db_password
         auth = f"{self.db_user}:{password}" if password else self.db_user
 
-        return (
-            "postgresql+asyncpg://"
-            f"{auth}@{self.db_host}:{self.db_port}/{self.db_name}"
-        )
+        return "postgresql://" f"{auth}@{self.db_host}:{self.db_port}/{self.db_name}"
 
 
 _settings: Settings | None = None

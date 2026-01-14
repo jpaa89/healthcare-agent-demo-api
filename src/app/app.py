@@ -36,15 +36,9 @@ async def bootstrap_schema(pool: asyncpg.Pool) -> None:
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     app_settings = get_app_settings()
-    database_url = (
-        f"postgresql://{app_settings.db_user}:"
-        f"{app_settings.db_password}@"
-        f"{app_settings.db_host}:"
-        f"{app_settings.db_port}/"
-        f"{app_settings.db_name}"
-    )
+
     try:
-        pool = await asyncpg.create_pool(dsn=database_url)
+        pool = await asyncpg.create_pool(dsn=app_settings.database_url)
         await bootstrap_schema(pool)
         app.state.pool = pool
         yield

@@ -51,7 +51,7 @@ EHR_PAYLOAD_1: dict[str, Any] = {
 EXPECTED_DEMOGRAPHICS: dict[str, Any] = {
     "patient_id": "P001",
     "type": "demographics",
-    "content": "Juan Pérez, 45 years old, gender M, blood type O+",
+    "content": "Juan Pérez, 45 años, género M, tipo sanguineo O+",
     "data": {
         "name": "Juan Pérez",
         "age": 45,
@@ -94,7 +94,7 @@ EXPECTED_ALLERGIES: list[dict[str, Any]] = [
     {
         "patient_id": "P001",
         "type": "allergy",
-        "content": "Allergy to Penicilina",
+        "content": "Alergia a Penicilina",
         "data": {"allergy": "Penicilina"},
         "source": {
             "type": "medical_history",
@@ -176,7 +176,7 @@ EXPECTED_LAB_RESULTS: list[dict[str, Any]] = [
     {
         "patient_id": "P001",
         "type": "lab_result",
-        "content": "Lab Test - Panel metabólico: glucose=128 mg/dL, hba1c=7.2%, creatinine=1.1 mg/dL",
+        "content": "Prueba de laboratorio - Panel metabólico: glucose=128 mg/dL, hba1c=7.2%, creatinine=1.1 mg/dL",
         "data": {
             "date": "2024-10-10",
             "test": "Panel metabólico",

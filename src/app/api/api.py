@@ -3,6 +3,7 @@ from fastapi.responses import RedirectResponse
 
 from app.api.ehr_ingestion_tasks_api import router as ehr_ingestion_tasks_api
 from app.api.ehr_context_items_api import router as ehr_context_items_api
+from app.api.ehr_query_api import router as ehr_query_api
 
 
 def setup_api(app: FastAPI) -> None:
@@ -25,6 +26,12 @@ def setup_api(app: FastAPI) -> None:
         ehr_context_items_api,
         prefix="/ehr-context-items",
         tags=["EHR Context Items API"],
+    )
+
+    api.include_router(
+        ehr_query_api,
+        prefix="/ehr-query",
+        tags=["EHR Query API"],
     )
 
     app.include_router(api)

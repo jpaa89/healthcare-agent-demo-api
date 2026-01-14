@@ -81,7 +81,7 @@ class EhrContextsRepository:
         _, count = result.split()
         return int(count)
 
-    async def list_by_patient(self, patient_id: str) -> Sequence[EHRContextItem]:
+    async def list_by_patient(self, patient_id: str) -> List[EHRContextItem]:
         rows = await self.conn.fetch(
             """
             SELECT *
