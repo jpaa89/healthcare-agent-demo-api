@@ -2,6 +2,7 @@ from fastapi import APIRouter, FastAPI
 from fastapi.responses import RedirectResponse
 
 from app.api.ehr_ingestion_tasks_api import router as ehr_ingestion_tasks_api
+from app.api.ehr_context_items_api import router as ehr_context_items_api
 
 
 def setup_api(app: FastAPI) -> None:
@@ -17,7 +18,13 @@ def setup_api(app: FastAPI) -> None:
     api.include_router(
         ehr_ingestion_tasks_api,
         prefix="/ehr-ingestion-tasks",
-        tags=["Electronic Health Record Ingestion Tasks API"],
+        tags=["EHR Ingestion Tasks API"],
+    )
+
+    api.include_router(
+        ehr_context_items_api,
+        prefix="/ehr-context-items",
+        tags=["EHR Context Items API"],
     )
 
     app.include_router(api)
